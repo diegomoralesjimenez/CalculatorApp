@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity"
     android:background="@color/black">
-
     <TableLayout
         android:id="@+id/tableLayout"
         android:layout_width="match_parent"
