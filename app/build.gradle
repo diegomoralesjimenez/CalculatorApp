@@ -2,6 +2,10 @@ plugins {
     id 'com.android.application'
 }
 
+static def getDate() {
+    return new Date().format('yyyyMMddHHmmss')
+}
+
 android {
     flavorDimensions "distribute"
     productFlavors {
@@ -18,12 +22,20 @@ android {
 
     compileSdk 31
 
+    def versionMajor = 1
+    def versionMinor = 1
+    def versionPatch = 0
+
     defaultConfig {
         applicationId "com.vulcuscr.calculator"
         minSdk 21
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+
+        versionCode versionMajor * 10000
+        + versionMinor * 100
+        + versionPatch
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}-${getDate()}"
+
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
