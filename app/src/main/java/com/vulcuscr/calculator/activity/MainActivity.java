@@ -1,6 +1,5 @@
 package com.vulcuscr.calculator.activity;
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -12,8 +11,6 @@ import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
 import com.microsoft.appcenter.distribute.Distribute;
-
-
 import com.vulcuscr.calculator.BuildConfig;
 import com.vulcuscr.calculator.R;
 import com.vulcuscr.calculator.controller.CalculatorController;
@@ -21,7 +18,7 @@ import com.vulcuscr.calculator.util.AppCenterDistributeListener;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonEqual, buttonSum, buttonCE;
+    Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonEqual, buttonSum, buttonRes, buttonDiv, buttonMul, buttonCE;
     int num0, num1, num2, num3, num4, num5, num6, num7, num8, num9;
     int res;
     TextView textRes1, textRes2, textRes3, textSimp;
@@ -29,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
     CalculatorController object = CalculatorController.getInstance();
 
-    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         button9 = findViewById(R.id.btn9);
         buttonEqual = findViewById(R.id.btnEqual);
         buttonSum = findViewById(R.id.btnAdd);
+        buttonRes = findViewById(R.id.btnRest);
+        buttonDiv = findViewById(R.id.btnDiv);
+        buttonMul = findViewById(R.id.btnMul);
         buttonCE = findViewById(R.id.buttonCE);
         textSimp = findViewById(R.id.textSim);
         textRes1 = findViewById(R.id.textResult);
@@ -196,33 +195,28 @@ public class MainActivity extends AppCompatActivity {
             textSimp.setText("");
         });
 
-        final Button add = findViewById(R.id.btnAdd);
-        add.setOnClickListener(v -> {
+        buttonSum.setOnClickListener(v -> {
             object.useMode(0);
             textSimp.setText("+");
         });
 
-        final Button rest = findViewById(R.id.btnRest);
-        rest.setOnClickListener(v -> {
+        buttonRes.setOnClickListener(v -> {
             object.useMode(1);
             textSimp.setText("-");
         });
 
-        final Button multi = findViewById(R.id.btnMul);
-        multi.setOnClickListener(v -> {
+        buttonMul.setOnClickListener(v -> {
             object.useMode(2);
             textSimp.setText("*");
 
         });
 
-        final Button div = findViewById(R.id.btnDiv);
-        div.setOnClickListener(v -> {
+        buttonDiv.setOnClickListener(v -> {
             object.useMode(3);
             textSimp.setText("/");
             });
 
-        final Button equal = findViewById(R.id.btnEqual);
-        equal.setOnClickListener(v -> {
+        buttonEqual.setOnClickListener(v -> {
             if(object.getMode() == 0) {
                 res = object.sum(object.primVal(), object.secVal());
                 textRes3.setText(String.valueOf(res));
